@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>{{ quiz['title'] }}</h1>
+
+<div class="timer">
+    Time Remaining:
+    <span id="timer">05:00</span>
+</div>
+
+<form
+    method="POST"
+    action="{{ url_for('submit_quiz', quiz_id=quiz['id']) }}"
+    id="quizForm"
+>
+
+{% for question in questions %}
+
+<div class="question-card">
+
+    <h3>
+        {{ loop.index }}.
+        {{ question['question'] }}
+    </h3>
+
+    <label>
+        <input
+            type="radio"
+            name="question_{{ question['id'] }}"
+            value="{{ question['option1'] }}"
+        >
+        {{ question['option1'] }}
+    </label>
+
+    <label>
+        <input
+            type="radio"
+            name="question_{{ question['id'] }}"
+            value="{{ question['option2'] }}"
+        >
+        {{ question['option2'] }}
+    </label>
+
+    <label>
+        <input
+            type="radio"
+            name="question_{{ question['id'] }}"
+            value="{{ question['option3'] }}"
+        >
+        {{ question['option3'] }}
+    </label>
+
+    <label>
+        <input
+            type="radio"
+            name="question_{{ question['id'] }}"
+            value="{{ question['option4'] }}"
+        >
+        {{ question['option4'] }}
+    </label>
+
+</div>
+
+{% endfor %}
+
+<button
+    class="btn"
+    type="submit"
+>
+    Submit Quiz
+</button>
+
+</form>
+
+
+<script>
+
+let time = 300;
+
+let timer = setInterval(function() {
+
+    let minutes = Math.floor(time / 60);
+
+    let seconds = time % 60;
+
+    seconds = seconds < 10
+        ? "0" + seconds
+        : seconds;
+
+    document.getElementById("timer").innerHTML =
+        minutes + ":" + seconds;
+
+    time--;
+
+    if (time < 0) {
+
+        clearInterval(timer);
+
+        document.getElementById("quizForm").submit();
+
+    }
+
+}, 1000);
+
+</script>
+
+{% endblock %}

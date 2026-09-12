@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="hero">
+
+    <h1>Online Quiz Management System</h1>
+
+    <p>
+        Test your knowledge with online quizzes.
+    </p>
+
+    <div class="buttons">
+
+        <a class="btn" href="{{ url_for('login') }}">
+            Login
+        </a>
+
+        <a class="btn secondary"
+           href="{{ url_for('register') }}">
+            Register
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="features">
+
+    <div class="card">
+        <h3>Multiple Quizzes</h3>
+        <p>Attempt quizzes from different subjects.</p>
+    </div>
+
+    <div class="card">
+        <h3>Instant Results</h3>
+        <p>Get your score immediately after submission.</p>
+    </div>
+
+    <div class="card">
+        <h3>Easy Management</h3>
+        <p>Admin can easily create and manage quizzes.</p>
+    </div>
+
+</div>
+
+{% endblock %}

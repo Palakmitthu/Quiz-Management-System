@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="result-box">
+
+    <h1>Quiz Completed!</h1>
+
+    <h2>{{ result['title'] }}</h2>
+
+    <div class="score">
+
+        <h1>
+            {{ result['score'] }} /
+            {{ result['total'] }}
+        </h1>
+
+        <p>
+            Percentage:
+            <strong>{{ percentage }}%</strong>
+        </p>
+
+    </div>
+
+
+    {% if percentage >= 40 %}
+
+        <h2 class="pass">
+            PASS
+        </h2>
+
+    {% else %}
+
+        <h2 class="fail">
+            FAIL
+        </h2>
+
+    {% endif %}
+
+
+    <a
+        class="btn"
+        href="{{ url_for('dashboard') }}"
+    >
+        Back to Dashboard
+    </a>
+
+</div>
+
+{% endblock %}
